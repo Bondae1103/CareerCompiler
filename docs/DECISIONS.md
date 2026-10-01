@@ -84,3 +84,13 @@ This document records all architectural decisions, audit resolutions, and techni
     1. `FontMetricSimulator` serves as the primary fast estimator in the ILP solver loop.
     2. Final compile gate is always a real compile using `compile_tex` (Tectonic) verifying `pages == 1`. If `pages > 1`, capacity is decremented and re-solved.
 
+### D-012: Profile Domain Model ID Scheme & Storage Invariants (P2)
+- **Date**: 2026-10-01
+- **Status**: DECIDED
+- **Rationale**:
+  - Entity ID Scheme: Slug format `^[a-zA-Z0-9_-]{1,64}$` to allow clear semantic names (e.g. `exp_thermo_b1`, `v1_perf`) while preventing path traversal or shell characters.
+  - Text Immutability: User-authored text is trimmed of leading and trailing whitespace only. Internal whitespace, Unicode, punctuation, and casing are preserved verbatim.
+  - No Control Characters: Reject characters in ranges `\x00-\x08`, `\x0b-\x0c`, `\x0e-\x1f` to prevent corrupted TeX input.
+  - Storage Strategy: SQLite backed via standard library `sqlite3` storing canonical JSON payloads with schema versioning table, supporting deterministic JSON serialization (sorted keys, 2-space indentation) for byte-identical round-trips.
+
+
