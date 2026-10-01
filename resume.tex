@@ -1,0 +1,180 @@
+% Resume in LaTeX - Core SDE / Systems / Full-Stack Tailored (Optum TDP Aligned)
+% Author : Anoop Nair
+% Based on: Jake's Resume Template
+% License : MIT
+%------------------------
+
+\documentclass[letterpaper,10pt]{article}
+
+\usepackage{latexsym}
+\usepackage[empty]{fullpage}
+\usepackage{titlesec}
+\usepackage{marvosym}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fancyhdr}
+\usepackage[english]{babel}
+\usepackage{tabularx}
+\input{glyphtounicode}
+
+\pagestyle{fancy}
+\fancyhf{} % clear all header and footer fields
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% Margins adjusted for strict 1-page fit
+\addtolength{\oddsidemargin}{-0.6in}
+\addtolength{\evensidemargin}{-0.6in}
+\addtolength{\textwidth}{1.2in}
+\addtolength{\topmargin}{-0.6in}
+\addtolength{\textheight}{1.2in}
+
+\urlstyle{same}
+
+\raggedbottom
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+% Section formatting
+\titleformat{\section}{
+  \vspace{-8pt}\scshape\raggedright\large
+}{}{0em}{}[\color{black}\titlerule \vspace{-4pt}]
+
+\pdfgentounicode=1
+
+% Custom commands
+\newcommand{\resumeItem}[1]{
+  \item\small{
+    {#1 \vspace{-2pt}}
+  }
+}
+
+\newcommand{\resumeSubheading}[4]{
+  \vspace{-2pt}\item
+    \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \textbf{#1} & #2 \\
+      \textit{\small#3} & \textit{\small #4} \\
+    \end{tabular*}\vspace{-6pt}
+}
+
+\newcommand{\resumeProjectHeading}[2]{
+    \vspace{-2pt}\item
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      \small#1 & #2 \\
+    \end{tabular*}\vspace{-6pt}
+}
+
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0.15in, label={}]}
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}\vspace{-6pt}}
+\newcommand{\resumeItemListStart}{\begin{itemize}[leftmargin=0.15in, label=\textbullet]}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-5pt}}
+
+%-------------------------------------------
+%%%%%%  RESUME STARTS HERE  %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+%----------HEADING----------
+\begin{center}
+    \textbf{\Huge \scshape Anoop Nair} \\ \vspace{2pt}
+    \small +91 8547560400 $|$ 
+    \href{mailto:anoop.nair.1103@gmail.com}{\underline{anoop.nair.1103@gmail.com}} $|$ 
+    \href{https://www.linkedin.com/in/anoop-nair-4a180928a}{\underline{LinkedIn}} $|$
+    \href{https://github.com/Bondae1103}{\underline{GitHub}} $|$
+    \href{https://portfolio-website-anoop.vercel.app}{\underline{Portfolio}}
+\end{center}
+\vspace{-12pt}
+
+
+%-----------EDUCATION-----------
+\section{Education}
+  \resumeSubHeadingListStart
+    \resumeSubheading
+      {Vellore Institute of Technology}{Vellore, Tamil Nadu}
+      {Bachelor of Technology (B.Tech), Computer Science Engineering (Bioinformatics) $|$ CGPA: 8.82}{Sep 2023 -- Present}
+    \resumeSubheading
+      {St. Thomas Residential School}{Thiruvananthapuram, Kerala}
+      {Class XII: 92\% \quad Class X: 91\%}{Graduated Mar 2022}
+  \resumeSubHeadingListEnd
+
+
+%-----------EXPERIENCE-----------
+\section{Experience}
+  \resumeSubHeadingListStart
+
+    \resumeSubheading
+      {Thermo Fisher Scientific}{Bengaluru, Karnataka}
+      {Software Developer Intern}{May 2026 -- July 2026}
+      \resumeItemListStart
+        \resumeItem{Architected modular end-to-end and REST API test frameworks using \textbf{Playwright} and \textbf{OOP design patterns}, achieving \textbf{100\% test coverage} across enterprise cloud services and microservices.}
+        \resumeItem{Engineered \textbf{Agentic AI} workflows and structured \textbf{prompt optimization} pipelines within CI/CD, automating regression test synthesis to cut feedback cycle latency by \textbf{35\%}.}
+        \resumeItem{Collaborated in cross-functional \textbf{Agile teams (Scrum/Kanban) via Jira and Confluence}, authoring \textbf{SOLID}-compliant test harnesses to standardize enterprise cloud quality.}
+      \resumeItemListEnd
+
+    \resumeSubheading
+      {BRIC -- Rajiv Gandhi Centre for Biotechnology (RGCB)}{Thiruvananthapuram, Kerala}
+      {Software / Computational Engineering Trainee}{May 2025 -- June 2025}
+      \resumeItemListStart
+        \resumeItem{Automated common ETL tasks and data utilities in high-performance \textbf{POSIX Linux}, reducing manual compute overhead and batch data transformation latency by \textbf{60\%}.}
+        \resumeItem{Engineered fault-tolerant \textbf{Linux Bash pipelines} and batch processing scripts, optimizing disk I/O, process concurrency, and memory utilization for molecular research datasets.}
+      \resumeItemListEnd
+
+  \resumeSubHeadingListEnd
+
+
+%-----------PROJECTS-----------
+\section{Projects}
+  \resumeSubHeadingListStart
+
+    \resumeProjectHeading
+      {\textbf{PaleoRAG -- Distributed Hybrid RAG Engine} \href{https://github.com/Bondae1103/Paleo-RAG}{[\underline{GitHub}]} $|$ \emph{FastAPI, Celery, Redis, Qdrant, Docker Compose, Pytest}}{}
+      \resumeItemListStart
+        \resumeItem{Architected an asynchronous, distributed backend microservice with \textbf{FastAPI}, \textbf{Celery}, and \textbf{Redis} as a message broker for concurrent ingestion and structural parsing of documents.}
+        \resumeItem{Engineered a hybrid retrieval engine combining \textbf{PubMedBERT} embeddings with BM25 indexing in \textbf{Qdrant}, attaining \textbf{100\% Recall@5} and \textbf{0\% hallucination rate} on 27 benchmarks.}
+        \resumeItem{Implemented low-latency streaming via \textbf{Server-Sent Events (SSE)} with post-hoc citation verification; containerized with \textbf{Docker Compose} and authored a \textbf{44-test Pytest suite (100\% pass rate)}.}
+      \resumeItemListEnd
+
+    \resumeProjectHeading
+      {\textbf{Startle -- Connectome-Driven Neural Simulation Engine} \href{https://github.com/Bondae1103/Startle}{[\underline{GitHub}]} $|$ \emph{TypeScript, Python, Vitest, HTML5 Canvas, 2D Physics, Systems Simulation}}{}
+      \resumeItemListStart
+        \resumeItem{Engineered a real-time simulation engine in \textbf{TypeScript} modeling the 158K-neuron Drosophila connectome, implementing Leaky Integrate-and-Fire (\textbf{LIF}) dynamics at 60fps on HTML5 Canvas.}
+        \resumeItem{Built an offline \textbf{Python pipeline} normalizing 1,100+ synaptic inputs; authored an automated \textbf{Vitest suite verifying 1,000 escape trajectories} with 2D boundary collision physics.}
+      \resumeItemListEnd
+
+    \resumeProjectHeading
+      {\textbf{AfroTB -- Phylogeny-Aware Graph Neural Network (GNN)} \href{https://github.com/Bondae1103/AfroTB-phylo-GNN-AMR-predictor}{[\underline{GitHub}]} $|$ \emph{PyTorch, PyTorch Geometric, GCN, Python, OOP, Graph ML}}{}
+      \resumeItemListStart
+        \resumeItem{Architected a multi-task \textbf{Graph Convolutional Network (GCN)} in \textbf{PyTorch Geometric} across 13,753 \textbf{clinical isolates} to jointly predict resistance phenotypes across 9 anti-TB drugs.}
+        \resumeItem{Engineered Jaccard-weighted phylogenetic mutation graphs across 157 loci; conducted ablation studies and was \textbf{selected for institutional showcase at Gravitas 2026}.}
+      \resumeItemListEnd
+
+  \resumeSubHeadingListEnd
+
+
+%-----------TECHNICAL SKILLS-----------
+\section{Technical Skills}
+ \begin{itemize}[leftmargin=0.15in, label={}]
+    \small{\item{
+     \textbf{Languages}{: Python, Java, C++, TypeScript, SQL, Bash/Shell, R} \\
+     \textbf{Machine Learning \& AI}{: Prompt Optimization / Engineering, Agentic AI / LLMs, PyTorch, PyTorch Geometric (GNNs), Scikit-learn, XGBoost, SHAP Explainability} \\
+     \textbf{Backend \& Distributed Systems}{: FastAPI, Celery (Task Queues), Redis (Cache \& Broker), RESTful APIs, Server-Sent Events (SSE), Microservices} \\
+     \textbf{Cloud \& DevOps}{: AWS (Lambda, S3), Docker, Docker Compose, Git, GitHub Actions, CI/CD Pipelines, Linux/POSIX} \\
+     \textbf{Databases \& Storage}{: PostgreSQL, MySQL, Redis, Qdrant (Vector DB), Relational Schema Design} \\
+     \textbf{SDE Practices \& Testing}{: Agile (Scrum, Kanban), Jira, Confluence, Object-Oriented Design (OOD, SOLID), Data Structures \& Algorithms, Pytest, Vitest, Playwright, TDD}
+    }}
+ \end{itemize}
+\vspace{-14pt}
+
+
+%-----------LEADERSHIP & ACHIEVEMENTS-----------
+\section{Leadership \& Achievements}
+  \resumeItemListStart
+    \resumeItem{\textbf{Vice President Membership, SOL Toastmasters Club}{: Directed recruitment funnels and public relations to drive \textbf{21\% net club growth}; delivered weekly presentations to 50+ attendees.}}
+    \resumeItem{\textbf{Branch Merit List (First Year)}{: Awarded Certificate of Merit and cash prize for achieving a \textbf{9.42 GPA} in Semester 1 (Top 1\% of cohort).}}
+    \resumeItem{\textbf{AI Fluency Framework \& Foundations}{: Certified by \textbf{Anthropic} (Issued Jul 2026).}}
+  \resumeItemListEnd
+
+\end{document}

@@ -1,0 +1,433 @@
+{
+  "total_bullets": 52,
+  "font_simulator": {
+    "exact_matches": 47,
+    "agreement_rate": 0.9038461538461539,
+    "over_estimates": 5,
+    "under_estimates": 0
+  },
+  "heuristic": {
+    "exact_matches": 31,
+    "agreement_rate": 0.5961538461538461,
+    "over_estimates": 21,
+    "under_estimates": 0
+  },
+  "records": [
+    {
+      "id": "real_01",
+      "text": "Architected modular end-to-end and REST API test frameworks ...",
+      "char_count": 210,
+      "ground_truth": 2,
+      "font_simulator": 2,
+      "heuristic": 3
+    },
+    {
+      "id": "real_02",
+      "text": "Engineered \\textbf{Agentic AI} workflows and structured \\tex...",
+      "char_count": 193,
+      "ground_truth": 2,
+      "font_simulator": 2,
+      "heuristic": 2
+    },
+    {
+      "id": "real_03",
+      "text": "Collaborated in cross-functional \\textbf{Agile teams (Scrum/...",
+      "char_count": 184,
+      "ground_truth": 2,
+      "font_simulator": 2,
+      "heuristic": 2
+    },
+    {
+      "id": "real_04",
+      "text": "Automated common ETL tasks and data utilities in high-perfor...",
+      "char_count": 176,
+      "ground_truth": 2,
+      "font_simulator": 2,
+      "heuristic": 2
+    },
+    {
+      "id": "real_05",
+      "text": "Engineered fault-tolerant \\textbf{Linux Bash pipelines} and ...",
+      "char_count": 183,
+      "ground_truth": 2,
+      "font_simulator": 2,
+      "heuristic": 2
+    },
+    {
+      "id": "real_06",
+      "text": "Architected an asynchronous, distributed backend microservic...",
+      "char_count": 202,
+      "ground_truth": 2,
+      "font_simulator": 2,
+      "heuristic": 3
+    },
+    {
+      "id": "real_07",
+      "text": "Engineered a hybrid retrieval engine combining \\textbf{PubMe...",
+      "char_count": 204,
+      "ground_truth": 2,
+      "font_simulator": 2,
+      "heuristic": 3
+    },
+    {
+      "id": "real_08",
+      "text": "Implemented low-latency streaming via \\textbf{Server-Sent Ev...",
+      "char_count": 215,
+      "ground_truth": 2,
+      "font_simulator": 2,
+      "heuristic": 3
+    },
+    {
+      "id": "real_09",
+      "text": "Engineered a real-time simulation engine in \\textbf{TypeScri...",
+      "char_count": 199,
+      "ground_truth": 2,
+      "font_simulator": 2,
+      "heuristic": 2
+    },
+    {
+      "id": "real_10",
+      "text": "Built an offline \\textbf{Python pipeline} normalizing 1,100+...",
+      "char_count": 193,
+      "ground_truth": 2,
+      "font_simulator": 2,
+      "heuristic": 2
+    },
+    {
+      "id": "real_11",
+      "text": "Architected a multi-task \\textbf{Graph Convolutional Network...",
+      "char_count": 203,
+      "ground_truth": 2,
+      "font_simulator": 2,
+      "heuristic": 3
+    },
+    {
+      "id": "short_01",
+      "text": "Maintained internal developer documentation and onboarding g...",
+      "char_count": 91,
+      "ground_truth": 1,
+      "font_simulator": 1,
+      "heuristic": 1
+    },
+    {
+      "id": "short_02",
+      "text": "Configured automated GitHub Actions workflows for continuous...",
+      "char_count": 90,
+      "ground_truth": 1,
+      "font_simulator": 1,
+      "heuristic": 1
+    },
+    {
+      "id": "short_03",
+      "text": "Awarded Certificate of Merit and cash prize for achieving a ...",
+      "char_count": 92,
+      "ground_truth": 1,
+      "font_simulator": 1,
+      "heuristic": 1
+    },
+    {
+      "id": "short_04",
+      "text": "Certified in AI Fluency Framework \\& Foundations by \\textbf{...",
+      "char_count": 89,
+      "ground_truth": 1,
+      "font_simulator": 1,
+      "heuristic": 1
+    },
+    {
+      "id": "short_05",
+      "text": "Implemented secure JWT authentication and role-based access ...",
+      "char_count": 88,
+      "ground_truth": 1,
+      "font_simulator": 1,
+      "heuristic": 1
+    },
+    {
+      "id": "short_06",
+      "text": "Designed relational schemas and indexed queries in PostgreSQ...",
+      "char_count": 88,
+      "ground_truth": 1,
+      "font_simulator": 1,
+      "heuristic": 1
+    },
+    {
+      "id": "short_07",
+      "text": "Authored 50+ unit tests with Pytest, achieving 98\\% branch c...",
+      "char_count": 87,
+      "ground_truth": 1,
+      "font_simulator": 1,
+      "heuristic": 1
+    },
+    {
+      "id": "short_08",
+      "text": "Refactored legacy monolith into three modular Go microservic...",
+      "char_count": 86,
+      "ground_truth": 1,
+      "font_simulator": 1,
+      "heuristic": 1
+    },
+    {
+      "id": "short_09",
+      "text": "Deployed containerized services to AWS ECS with auto-scaling...",
+      "char_count": 89,
+      "ground_truth": 1,
+      "font_simulator": 1,
+      "heuristic": 1
+    },
+    {
+      "id": "boundary_01",
+      "text": "Engineered asynchronous worker tasks with Celery and Redis t...",
+      "char_count": 113,
+      "ground_truth": 1,
+      "font_simulator": 1,
+      "heuristic": 2
+    },
+    {
+      "id": "boundary_02",
+      "text": "Optimized MySQL database queries and added composite indexes...",
+      "char_count": 108,
+      "ground_truth": 1,
+      "font_simulator": 1,
+      "heuristic": 2
+    },
+    {
+      "id": "boundary_03",
+      "text": "Developed responsive frontend components in React and Tailwi...",
+      "char_count": 116,
+      "ground_truth": 1,
+      "font_simulator": 1,
+      "heuristic": 2
+    },
+    {
+      "id": "boundary_04",
+      "text": "Streamlined Docker images using multi-stage builds, slashing...",
+      "char_count": 110,
+      "ground_truth": 1,
+      "font_simulator": 1,
+      "heuristic": 2
+    },
+    {
+      "id": "boundary_05",
+      "text": "Implemented rate limiting and DDoS mitigation using Redis to...",
+      "char_count": 107,
+      "ground_truth": 1,
+      "font_simulator": 1,
+      "heuristic": 2
+    },
+    {
+      "id": "boundary_06",
+      "text": "Collaborated with product managers to define technical requi...",
+      "char_count": 107,
+      "ground_truth": 1,
+      "font_simulator": 1,
+      "heuristic": 2
+    },
+    {
+      "id": "boundary_07",
+      "text": "Conducted automated vulnerability scans using Snyk and Trivy...",
+      "char_count": 111,
+      "ground_truth": 1,
+      "font_simulator": 1,
+      "heuristic": 2
+    },
+    {
+      "id": "boundary_08",
+      "text": "Integrated Prometheus metrics and Grafana dashboards for rea...",
+      "char_count": 109,
+      "ground_truth": 1,
+      "font_simulator": 1,
+      "heuristic": 2
+    },
+    {
+      "id": "boundary_09",
+      "text": "Automated infrastructure provisioning using Terraform script...",
+      "char_count": 109,
+      "ground_truth": 1,
+      "font_simulator": 1,
+      "heuristic": 2
+    },
+    {
+      "id": "boundary_10",
+      "text": "Designed RESTful API contracts following OpenAPI 3.0 standar...",
+      "char_count": 115,
+      "ground_truth": 1,
+      "font_simulator": 1,
+      "heuristic": 2
+    },
+    {
+      "id": "med_01",
+      "text": "Architected a fault-tolerant event sourcing pipeline with Ap...",
+      "char_count": 183,
+      "ground_truth": 2,
+      "font_simulator": 2,
+      "heuristic": 2
+    },
+    {
+      "id": "med_02",
+      "text": "Engineered distributed consensus protocols based on Raft in ...",
+      "char_count": 171,
+      "ground_truth": 2,
+      "font_simulator": 2,
+      "heuristic": 2
+    },
+    {
+      "id": "med_03",
+      "text": "Spearheaded cloud migration of on-premises workloads to AWS,...",
+      "char_count": 171,
+      "ground_truth": 2,
+      "font_simulator": 2,
+      "heuristic": 2
+    },
+    {
+      "id": "med_04",
+      "text": "Constructed graph neural network pipelines in PyTorch Geomet...",
+      "char_count": 187,
+      "ground_truth": 2,
+      "font_simulator": 2,
+      "heuristic": 2
+    },
+    {
+      "id": "med_05",
+      "text": "Implemented automated end-to-end integration test suites in ...",
+      "char_count": 175,
+      "ground_truth": 2,
+      "font_simulator": 2,
+      "heuristic": 2
+    },
+    {
+      "id": "med_06",
+      "text": "Built real-time collaborative document editing backend using...",
+      "char_count": 173,
+      "ground_truth": 2,
+      "font_simulator": 2,
+      "heuristic": 2
+    },
+    {
+      "id": "med_07",
+      "text": "Led team of four engineers to deliver customer analytics pla...",
+      "char_count": 163,
+      "ground_truth": 2,
+      "font_simulator": 2,
+      "heuristic": 2
+    },
+    {
+      "id": "med_08",
+      "text": "Designed and benchmarked custom vector similarity search alg...",
+      "char_count": 171,
+      "ground_truth": 2,
+      "font_simulator": 2,
+      "heuristic": 2
+    },
+    {
+      "id": "med_09",
+      "text": "Engineered automated bioinformatics parsing scripts in Pytho...",
+      "char_count": 170,
+      "ground_truth": 2,
+      "font_simulator": 2,
+      "heuristic": 2
+    },
+    {
+      "id": "med_10",
+      "text": "Authored comprehensive architectural decision records (ADRs)...",
+      "char_count": 158,
+      "ground_truth": 2,
+      "font_simulator": 2,
+      "heuristic": 2
+    },
+    {
+      "id": "long_01",
+      "text": "Architected and deployed a multi-tenant enterprise SaaS back...",
+      "char_count": 304,
+      "ground_truth": 3,
+      "font_simulator": 3,
+      "heuristic": 4
+    },
+    {
+      "id": "long_02",
+      "text": "Engineered an automated regression testing framework utilizi...",
+      "char_count": 314,
+      "ground_truth": 3,
+      "font_simulator": 3,
+      "heuristic": 4
+    },
+    {
+      "id": "long_03",
+      "text": "Developed a high-throughput genomic variant calling pipeline...",
+      "char_count": 298,
+      "ground_truth": 3,
+      "font_simulator": 3,
+      "heuristic": 3
+    },
+    {
+      "id": "long_04",
+      "text": "Designed and implemented distributed caching architecture us...",
+      "char_count": 272,
+      "ground_truth": 3,
+      "font_simulator": 3,
+      "heuristic": 3
+    },
+    {
+      "id": "long_05",
+      "text": "Led cross-functional migration from legacy monolithic Django...",
+      "char_count": 285,
+      "ground_truth": 3,
+      "font_simulator": 3,
+      "heuristic": 3
+    },
+    {
+      "id": "long_06",
+      "text": "Implemented privacy-preserving federated learning platform u...",
+      "char_count": 251,
+      "ground_truth": 2,
+      "font_simulator": 3,
+      "heuristic": 3
+    },
+    {
+      "id": "long_07",
+      "text": "Engineered custom memory allocator in C for high-frequency t...",
+      "char_count": 241,
+      "ground_truth": 2,
+      "font_simulator": 3,
+      "heuristic": 3
+    },
+    {
+      "id": "long_08",
+      "text": "Built distributed web crawler and parsing engine in Python a...",
+      "char_count": 230,
+      "ground_truth": 2,
+      "font_simulator": 2,
+      "heuristic": 3
+    },
+    {
+      "id": "edge_01",
+      "text": "Maintained open-source documentation at \\href{https://github...",
+      "char_count": 180,
+      "ground_truth": 2,
+      "font_simulator": 3,
+      "heuristic": 2
+    },
+    {
+      "id": "edge_02",
+      "text": "Tested extreme tokenization: \\texttt{org.springframework.boo...",
+      "char_count": 162,
+      "ground_truth": 1,
+      "font_simulator": 2,
+      "heuristic": 2
+    },
+    {
+      "id": "edge_03",
+      "text": "Handled complex symbols: 100\\% test coverage, \\$5,000 cost s...",
+      "char_count": 152,
+      "ground_truth": 2,
+      "font_simulator": 2,
+      "heuristic": 2
+    },
+    {
+      "id": "edge_04",
+      "text": "Integrated \\href{https://portfolio-website-anoop.vercel.app}...",
+      "char_count": 180,
+      "ground_truth": 1,
+      "font_simulator": 2,
+      "heuristic": 1
+    }
+  ]
+}
