@@ -1,0 +1,82 @@
+For 2027, TDP will be offering only Software Engineering role. The role includes, but is not limited
+
+to analysis, design, coding, engineering, testing, debugging, standards, methods, tools analysis,
+
+documentation, research and development, maintenance, new development, operations, and
+
+delivery. With every role in the company, each position has a requirement for building quality into
+
+every output. This also includes evaluating new tools, new techniques, strategies; Automation of
+
+common tasks; build of common utilities to drive organizational efficiency with a passion around
+
+technology and solutions and influence of thought and leadership
+Required Qualifications:
+
+
+
+• Degree in BE/ BTECH/ MCA in Computer Science, Computer Engineering, Software Engineering,
+
+Data Science, IT & other technology related fields; CGPA- 7.0 or above, No active backlogs
+
+• Currently in final year of obtaining a bachelor's or master's degree from an accredited
+
+college/university in majors stated above
+
+• Basic understanding of Artificial Intelligence (AI), Machine Learning (ML), Large Language Models
+
+(LLMs), with ability to leverage AI tools to enhance productivity and problem-solving
+
+• Proficient in one or more coding languages (Example: Python, Java, C, SQL, .NET)
+
+
+
+• Must be eligible to work in India without company sponsorship, now or in the future, for employment-
+
+based work authorization.
+
+
+
+Preferred Qualifications:
+
+
+
+• Involvement in any additional technical activities (Robotics, Comp. Science/Tech clubs, Tech or
+
+Engineering side projects, GitHub, etc.) and/or tech related employment experience
+
+• Cloud Technologies (AWS, Azure, and/or GCP)
+
+• Demonstrated capability to accomplish the following:
+
+▪ Apply AI tools to solve business problems
+
+▪ Use APIs and frameworks to create scalable AI solutions
+
+▪ Build and optimize prompts for analysis, reporting, and automation
+
+▪ Develop and deploy machine learning and AI models
+
+▪ Integrate AI into workflows (e.g., reporting, dashboards, operations processes)
+
+▪ Analyze data using AI-enabled tools and generate insights
+
+▪ Collaborate with teams to identify opportunities for AI-driven improvements
+
+▪ Ensure responsible and compliant use of AI solutions
+
+
+
+• Proven ability to collaborate effectively and communicate clearly within technical teams and cross-
+
+functional environments
+
+
+
+• Experience with software engineering tools such as source code control systems (i.e. GIT, GitHub),
+
+IDE, Continuous Delivery and deployment pipeline, etc.
+
+• Understanding of Agile Frameworks, methodologies, roles, and tools (Kanban, Scrum, SaFE, LeSS,
+
+etc).

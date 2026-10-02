@@ -1,0 +1,54 @@
+VComply Software Development Internship
+VComply is seeking talented software development interns to join our dynamic product 
+engineering team. As an intern at VComply, you will have the opportunity to work alongside our 
+experienced UX designers, product management, and engineering professionals to create 
+cutting-edge front-end components. If you love solving problems and creating great 
+experiences for users, this may be a great fit. 
+
+What you’ll do:
+• Work closely with UX designer, product managers & engineering professionals to create 
+new product features for our customers
+• Stay updated with industry innovations and implement improvements to enhance our 
+products
+• Apply creative problem-solving skills to overcome complex technical challenges
+• Work in an Agile/Scrum environment, delivering high-quality systems
+• Gain hands-on experience with web application frameworks like React, Node JS, and 
+Micro Services
+• Build AI-driven components to integrate with different products within VComply 
+• Create prototypes of new technologies and features for potential incorporation into 
+future products
+• Debugging computer code to fix errors and improve performance
+• Conducting research on new technologies and techniques to identify opportunities for 
+improvement
+• Documenting and testing new software applications
+
+Why VComply:
+• Opportunity to have a direct impact on the growth of a fast-growing & dynamic 
+company 
+• Challenging work environment with End-to-end ownership of your role 
+• Incredible growth opportunities – we are a meritocracy, and the best will always have 
+room for growth in the company 
+• Opportunity to work directly with senior leadership 
+• Accelerated learning environment with a high performing team surrounding you 
+• A Culture that promotes challenging oneself & continuous improvement. 
+VComply Technologies India Private Limited www.v-comply.com
+Technopolis, 11th Floor, BP Block, Sector V, Bidhannagar,
+Kolkata, West Bengal 700091
+
+About VComply
+• VComply is an agile cloud (software as a service) GRC platform with capabilities to 
+manage GRC in an easy-to-use and intuitive environment that delivers business value, 
+brings a contextual understanding of GRC to enable an organization to reliably achieve 
+objectives while addressing uncertainty and acting with integrity. 
+• VComply was founded in 2019 with a focus to deliver a SaaS Cloud GRC solution that is 
+highly configurable and adaptable to a range of industries with a particular focus in the 
+mid-market. 
+• Organizations across industry verticals benefit from VComply’s simple and modular 
+approach to GRC that transforms GRC management in an increasingly mobile, social, 
+global, and virtual business environment. 
+
+Company Highlights
+• Well-funded: $8.5M raised through Series A from top-tier investors including Accel & 
+CounterPart Ventures 
+• Head-quartered in Sunnyvale, with offices in Sunnyvale, Bangalore, and 
+Kolkata

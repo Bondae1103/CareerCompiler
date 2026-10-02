@@ -1,0 +1,158 @@
+EARLY CAREERS PROGRAM
+CYBERSECURITY
+
+INTERNSHIPS AT JIOSTAR
+
+Build. Defend. Innovate.
+
+Six-month campus internship | Mumbai
+Cybersecurity | GenAI | Enterprise Technology
+
+JioStar Early Careers Program | Cybersecurity Internships Page 2
+BUILD THE FUTURE OF CYBERSECURITY
+At JioStar, cybersecurity protects the platforms, content, data, people, technology and
+partnerships that power experiences for audiences at scale. Our Cybersecurity Internship
+Program is designed for high-potential fresh engineering graduates who want to solve
+meaningful problems at the intersection of cybersecurity, cloud and on-prem infra, automation,
+and Generative AI (GenAI space..
+Interns will work alongside experienced practitioners on defined projects, gain hands-on
+knowledge of best-in-class enterprise grade security technologies, and build or evaluate
+solutions with tangible outcomes. Each project will culminate in a technical demonstration,
+documented findings and recommendations presented to cybersecurity and engineering
+leaders.
+
+What interns can expect
+• Real-world cybersecurity engineering problems grounded in a large-scale media-tech
+environment.
+• Hands-on experience with enterprise platforms, security telemetry, APIs, automation and GenAI.
+• Exposure to GenAI-enabled security workflows and the emerging challenge of securing AI
+applications and autonomous agents.
+• Structured mentorship, cross-functional collaboration and opportunities to learn how security
+operates at enterprise scale.
+• A demonstrable prototype, assessment or control improvement that connects technical depth with
+measurable business value.
+
+GenAI and engineering exposure
+• Build AI-assisted workflows for analysing vulnerabilities, alerts, cloud configurations, controls and
+risk data.
+• Apply large language models to security summarisation, classification, correlation, investigation
+support and recommendation use cases.
+• Evaluate prompt injection, data leakage, unsafe tool use, excessive agency, model misuse and
+other risks in GenAI-enabled systems.
+• Develop prototypes using Python, APIs, cloud-native services, policy-as-code and enterprise-
+approved GenAI platforms.
+• Design evaluation criteria and guardrails for accuracy, security, privacy, explainability, human
+oversight and responsible use.
+
+Indicative enterprise technology landscape: Application and API security; SAST, DAST,
+software composition and secrets scanning; AI security testing and observability; SIEM, SOAR
+and EDR/XDR; vulnerability and attack-surface management; identity and privileged access;
+cloud-native and container security; GRC and compliance automation; Python, APIs and policy-
+as-code. Actual exposure will depend on project scope and approved access.
+
+JioStar Early Careers Program | Cybersecurity Internships Page 3
+Lane 1 | PRODUCT SECURITY
+Securing Digital Products and Autonomous AI Agents
+Internship location: Mumbai Duration: 6 months
+Overview
+As JioStar builds and enhances digital products, security must be embedded throughout the
+software development lifecycle. The challenge now extends beyond conventional application
+vulnerabilities to GenAI applications and autonomous or semi-autonomous agents that can retrieve
+data, invoke tools, interact with APIs, generate code or initiate actions. Interns will explore how
+malicious agents - and legitimate agents manipulated into harmful behaviour - can be observed,
+constrained and stopped.
+
+Indicative objectives
+• Assess a defined application or API using SAST, DAST, software composition, secrets-scanning
+and API-security techniques.
+• Develop threat models for GenAI applications and agents across prompts, memory, retrieval
+sources, tools, identities, APIs and downstream actions.
+• Test controlled scenarios including prompt injection, context or memory poisoning, malicious tool
+invocation, identity misuse, data exfiltration, privilege escalation and excessive agency.
+• Instrument an agentic workflow to observe prompts, retrieved context, tool calls, data access,
+outputs and actions, and identify anomalous behaviour.
+• Evaluate preventive controls including least-privilege identities, tool allowlists, action-level
+authorisation, validation, sandboxing, rate limits, human approval and emergency termination
+controls.
+• Prototype and evaluate an AI-security detection or runtime policy-enforcement capability using
+measurable criteria such as detection coverage, false positives and latency.
+
+Enterprise tools and technology exposure
+Application and API security platforms; SAST, DAST, software-composition and secrets-scanning
+tools; CI/CD security; AI red-teaming; agent and model observability; identity and policy controls;
+Python and APIs.
+
+Indicative project deliverables: Agentic-AI threat model and attack-path analysis; controlled red-
+team test suite; agent activity and tool-call observability dashboard; penetration testing; prototype
+detection or policy-enforcement control; secure reference architecture and prioritised engineering
+recommendations.
+
+JioStar Early Careers Program | Cybersecurity Internships Page 4
+Lane 2 | ENTERPRISE SECURITY
+Strengthening Enterprise Cyber Resilience
+Internship location: Mumbai Duration: 6 months
+Overview
+Enterprise Security protects JioStar's workforce, endpoints, identities, infrastructure and corporate
+assets from evolving threats. Interns will work with modern security operations and vulnerability-
+management capabilities, use enterprise telemetry to investigate defined problems, and explore how
+GenAI can reduce analyst effort while preserving human judgement and strong data safeguards.
+
+Indicative objectives
+• Analyse vulnerability data for a defined set of enterprise assets and support risk-based
+remediation prioritisation and tracking.
+• Investigate security events from SIEM, EDR/XDR, identity and email-security platforms using
+authorised data.
+• Develop or tune selected detection and threat-hunting use cases under the guidance of the
+Security Operations team.
+• Prototype an AI-assisted workflow for alert enrichment, incident summarisation, phishing analysis,
+threat hunting or vulnerability prioritisation.
+• Automate a repeatable security operation using SOAR, Python or APIs and document the control
+and operational hand-offs.
+• Evaluate AI-generated security recommendations for accuracy, relevance, hallucination risk, false
+positives and safe handling of sensitive information.
+• Improve a selected incident-response playbook and develop metrics that demonstrate detection,
+remediation or response effectiveness.
+
+Enterprise tools and technology exposure
+SIEM and SOAR; EDR/XDR; vulnerability-management and attack-surface platforms; email and
+identity security; threat intelligence; automation APIs; enterprise-approved GenAI platforms.
+
+Indicative project deliverables: Risk-prioritised remediation dashboard; Penetration testing;
+detection or threat-hunting findings; AI-assisted security-operations prototype; automated
+workflow; evaluation results; and an improved incident-response playbook or runbook.
+
+JioStar Early Careers Program | Cybersecurity Internships Page 5
+Lane 3 | CLOUD SECURITY
+Securing Cloud-Native and GenAI Workloads
+Internship location: Mumbai Duration: 6 months
+Overview
+Cloud technologies are fundamental to JioStar's digital ecosystem. This laneprovides hands-on
+exposure to securing cloud infrastructure, identities, workloads, containers and cloud-native
+applications, including GenAI services. Interns will assess a defined environment, use enterprise
+cloud-security platforms, automate security checks and develop practical recommendations for
+secure-by-design cloud adoption.
+
+Project objectives
+• Assess a scoped cloud environment against JioStar security requirements and relevant cloud-
+security practices.
+• Review identity and access configurations to identify excessive permissions and recommend
+least-privilege improvements.
+• Analyse and validate high-priority findings from cloud security posture and cloud-native
+application protection platforms.
+• Evaluate security controls for a defined container, Kubernetes or infrastructure-as-code
+deployment.
+• Threat-model a cloud-hosted GenAI workload across model endpoints, APIs, prompts, data
+stores, vector databases, secrets, identities and logging.
+• Prototype an AI-assisted configuration-analysis, remediation-recommendation or policy-as-code
+capability and evaluate the quality of its output.
+• Define monitoring requirements for unauthorised access, abnormal usage, sensitive-data
+exposure and misuse of cloud or AI services.
+
+Enterprise tools and technology exposure
+Cloud-native security services; CNAPP/CSPM and entitlement-management platforms; identity and
+secrets management; container and Kubernetes security; infrastructure-as-code scanning; policy-as-
+code; Python, APIs and managed GenAI services.
+
+Indicative project deliverables: Cloud-security posture assessment; identity improvement plan;
+automation or policy-as-code prototype; secure reference architecture for a GenAI workload;
+monitoring recommendations and prioritised remediation roadmap.

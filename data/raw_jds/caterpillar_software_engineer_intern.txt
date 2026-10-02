@@ -1,0 +1,59 @@
+Caterpillar team is currently hiring Software Engineers and Interns to work in
+
+▪ The Digital Platform development area to build and test components of the product on cloud platform
+
+and to build Analytical models on top of the rich data that gets into the Digital Platform.
+
+▪ The application development area to build and test Web/Mobile applications on cloud platform catering
+
+to Caterpillar Customer needs
+
+
+
+Responsibilities include but are not limited to:
+
+▪ Work independently in a platform or application team on programming and development assignments in
+
+cloud or Proof of concept on innovative ideas and/or technologies
+
+▪ Learn new technology or tool and apply it to improve engineering process
+
+▪ Contribute to platform or application development/test/support
+
+
+
+Qualifications - External
+
+REQUIREMENTS:
+
+▪ Successfully completed at least 1 year of Postgraduate degree or 3 years of Undergraduate degree with
+
+academic score > 75% or > 7.5 CGPA
+
+▪ Must be from CSE/IT background
+
+▪ Must demonstrate solid knowledge of computer science fundamentals like data structures and
+
+algorithms
+
+▪ Must be able to program in one of the languages Java/Python/C#/C++
+
+▪ Must have good UI/UX skills
+
+▪ Must be able to use relational and No-SQL databases
+
+▪ Passion for technology and an eagerness to contribute to a team-oriented environment
+
+▪ Must have good communication skills and must be a quick learner
+
+
+
+Caterpillar: Confidential Green
+
+
+
+▪ Nice to have good knowledge on Data Engineering, Data warehousing and Big Data concepts
+
+▪ Nice to have knowledge on AWS/Azure cloud native tools
+
+change resume to fit this JD

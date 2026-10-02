@@ -93,4 +93,14 @@ This document records all architectural decisions, audit resolutions, and techni
   - No Control Characters: Reject characters in ranges `\x00-\x08`, `\x0b-\x0c`, `\x0e-\x1f` to prevent corrupted TeX input.
   - Storage Strategy: SQLite backed via standard library `sqlite3` storing canonical JSON payloads with schema versioning table, supporting deterministic JSON serialization (sorted keys, 2-space indentation) for byte-identical round-trips.
 
+### D-013: Tier 1 Document Tree Parser Specifications & Heading Taxonomy (P3)
+- **Date**: 2026-10-02
+- **Status**: DECIDED
+- **Rationale**:
+  - Section Classification Taxonomy: Fixed canonical enum `SectionKind` (`RESPONSIBILITIES`, `REQUIREMENTS`, `PREFERRED`, `ABOUT`, `BENEFITS`, `UNCLASSIFIED`). Unknown or heading-less sections are strictly assigned to `UNCLASSIFIED`.
+  - Evidence & Offset Invariant: All document nodes store `start` and `end` character offsets referencing the unmodified source text. Code verifies `source[node.start:node.end] == node.raw_text`.
+  - Zero-Loss Text Coverage: The concatenated leaf spans of a parsed document cover 100% of all non-whitespace characters in the input document. Nothing is silently dropped.
+  - Resume Import Intake: An existing resume (`.tex` or plain text) is parsed into an editable *draft* `Profile` requiring explicit user confirmation before saving to the Master Profile Bank.
+
+
 

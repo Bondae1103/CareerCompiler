@@ -1,0 +1,70 @@
+Data Scientist I Intern
+
+Job summary
+
+We are looking for motivated data scientists with excellent leadership skills, and the ability to
+
+develop, automate, and run analytical models of our systems. Academic and/or practical
+
+background in Computer Science, Engineering, Operations Research, or Process Control are
+
+particularly relevant for this position. Experience in the integration of model-based engineering
+
+tools and/or multidisciplinary analysis &amp; optimization is also a plus.
+
+Locations - Bangalore, Hyderabad, Chennai
+
+Major Responsibilities:
+
+
+
+Use data analyses and statistical techniques to develop solutions to improve customer
+
+experience and to guide business decision making
+
+Identify predictors and causes of business related problems and implement novel approaches
+
+related to forecasting and prediction
+
+Identify, develop, manage, and execute analyses to uncover areas of opportunity and present
+
+written business recommendations
+
+Collaborate with multiple teams as a leader of quantitative analysis and where you develop
+
+solutions that utilize the highest standards of analytical rigor and data integrity
+
+Analyze and solve business problems at their root
+Key Responsibilities
+
+• Collaborate with experienced cross-disciplinary Amazonians to conceive, design, and bring
+
+innovative products and services to market.
+
+• Design and build innovative technologies in a large distributed computing environment, and
+
+help lead fundamental changes in the industry.
+
+• Create solutions to run predictions on distributed systems with exposure to innovative
+
+technologies at incredible scale and speed.
+
+• Build distributed storage, index, and query systems that are scalable, fault-tolerant, low cost,
+
+and easy to manage and use.
+
+• Design and code the right solutions starting with broadly defined problems.
+
+• Work in an agile environment to deliver high-quality software.
+
+
+
+Basic Qualifications
+
+• Knowledge of computer science fundamentals such as object-oriented design, operating
+
+systems, algorithms, data structures, and complexity analysis
+
+• Knowledge of programming languages such as C/C++, Python, Java, or Perl
+
+Modify current resume to fit these requirements. keep iterating to find resume that scores highest for these particular jds

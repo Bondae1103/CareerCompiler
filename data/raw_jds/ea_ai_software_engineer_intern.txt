@@ -1,0 +1,53 @@
+AI Software Engineer Intern
+
+
+
+EA Hyderabad
+
+As part of Electronic Arts, we build experiences for players around the world and look for new
+
+ways to delight our communities through high-quality game development.
+
+Reporting to the Quality Engineering team and as a Software Engineer AI Intern, you&#39;ll work
+
+with teams implementing automation scripts. You&#39;ll write code, participate in reviews, support
+
+automated testing, and help explore practical AI-assisted workflows for test generation and
+
+validation. This 6-month internship offers experience with international teams and best practices
+
+for producing high-quality code and reliable automation.
+
+Responsibilities
+
+● You will collaborate with the QA team as an embedded SE to support game production teams
+
+throughout testing phases.
+
+● Learn and maintain automation frameworks for ongoing features and automation needs within
+
+the project.
+
+● You will design, write, and implement automation scripts to improve feature coverage and
+
+reduce repetitive manual testing.
+
+Required Qualifications
+
+● Pursuing a degree in Computer Science and coursework or project experience in test
+
+automation, AI/ML, data analysis, API testing, or mobile application testing.
+
+● Familiarity with Git, automated build pipelines, logs, telemetry, or test reporting tools.
+
+● Exposure to evaluating AI-generated outputs for correctness, consistency, or practical
+
+usefulness.
+
+● Knowledge of Object-Oriented Programming and scripting languages such as Java, JavaScript,
+
+or Python, documented through relevant projects or coursework.
+
+Nice to have: Experience with a relational database such as MySQL, PostgreSQL, or Oracle and
+
+experience with Linux or Ubuntu
