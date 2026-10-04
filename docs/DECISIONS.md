@@ -102,5 +102,16 @@ This document records all architectural decisions, audit resolutions, and techni
   - Zero-Loss Text Coverage: The concatenated leaf spans of a parsed document cover 100% of all non-whitespace characters in the input document. Nothing is silently dropped.
   - Resume Import Intake: An existing resume (`.tex` or plain text) is parsed into an editable *draft* `Profile` requiring explicit user confirmation before saving to the Master Profile Bank.
 
+### D-014: Tier 2 Entity Gazetteer & Normalizer Architecture (P4)
+- **Date**: 2026-10-04
+- **Status**: DECIDED
+- **Rationale**:
+  - Single Canonical Namespace: Lowercase alphanumeric slug `^[a-z0-9_-]{1,64}$` owned by Tier 2 Gazetteer. Resolves ambiguity between JD entities and resume tags.
+  - Boundary-Safe Matching Engine: Uses dual case-sensitive and case-insensitive Trie structures with exact boundary verification instead of standard `\b` regexes (which fail on `C++`, `C#`, `.NET`, `Node.js`).
+  - Data-Driven Disambiguation: Ambiguous short terms (`Go`, `C`, `R`, `Rust`, `Spark`, `REST`) declare explicit contextual rules (`case_sensitive`, `trigger_patterns`, `negative_patterns`, `context_keywords`) directly in the taxonomy data schema rather than scattered in code.
+  - Strict License Provenance: All entities carry verified open source licenses (MIT, CC-BY-SA-4.0, or permissive open source) tracked in a structured provenance manifest. Unreviewed entries are strictly tracked and quantified.
+
+
+
 
 

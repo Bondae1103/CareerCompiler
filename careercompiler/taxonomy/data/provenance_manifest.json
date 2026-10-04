@@ -1,0 +1,53 @@
+{
+  "version": "1.0.0",
+  "generation_date": "2026-10-04",
+  "sources": [
+    {
+      "name": "github_linguist",
+      "url": "https://raw.githubusercontent.com/github/linguist/master/lib/linguist/languages.yml",
+      "license": "MIT",
+      "description": "GitHub Linguist programming language specifications and aliases.",
+      "terms": "Permissive MIT license allows modification, redistribution, and commercial use."
+    },
+    {
+      "name": "stack_overflow",
+      "url": "https://data.stackexchange.com/stackoverflow/query/new",
+      "license": "CC-BY-SA-4.0",
+      "description": "Stack Overflow Tag Synonyms and canonical technology terms.",
+      "terms": "Creative Commons Attribution-ShareAlike 4.0 International allows redistribution with attribution."
+    },
+    {
+      "name": "official_project_spec",
+      "url": "https://careercompiler.local/specs/taxonomy",
+      "license": "permissive_open_source",
+      "description": "Standard software architecture patterns, cloud services, and candidate project technologies.",
+      "terms": "Permissive documentation and public specifications."
+    }
+  ],
+  "summary": {
+    "total_entities": 209,
+    "unreviewed_count": 0,
+    "by_source": {
+      "github_linguist": 34,
+      "stack_overflow": 103,
+      "official_project_spec": 72
+    },
+    "by_type": {
+      "language": 34,
+      "framework": 28,
+      "platform": 3,
+      "library": 17,
+      "concept": 28,
+      "database": 26,
+      "tool": 42,
+      "cloud": 16,
+      "devops": 9,
+      "methodology": 6
+    },
+    "by_license": {
+      "MIT": 34,
+      "CC-BY-SA-4.0": 103,
+      "permissive_open_source": 72
+    }
+  }
+}
