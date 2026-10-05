@@ -111,6 +111,17 @@ This document records all architectural decisions, audit resolutions, and techni
   - Data-Driven Disambiguation: Ambiguous short terms (`Go`, `C`, `R`, `Rust`, `Spark`, `REST`) declare explicit contextual rules (`case_sensitive`, `trigger_patterns`, `negative_patterns`, `context_keywords`) directly in the taxonomy data schema rather than scattered in code.
   - Strict License Provenance: All entities carry verified open source licenses (MIT, CC-BY-SA-4.0, or permissive open source) tracked in a structured provenance manifest. Unreviewed entries are strictly tracked and quantified.
 
+### D-015: Tier 3 Constrained Semantic Extractor Architecture (P5)
+- **Date**: 2026-10-05
+- **Status**: DECIDED
+- **Rationale**:
+  - Offline-First Extractor: Primary extraction engine `LocalRuleExtractor` operates 100% offline with zero network or remote LLM dependency, combining Tier 1 section classification with Tier 2 entity gazetteer and cue-phrase parsing.
+  - Evidence Invariant Enforcement: Post-validator strictly checks that every extracted requirement and scale indicator carries character offset spans into the source text where `source[start:end]` contains the surface form. Invalids are dropped and recorded in `dropped_items_count`.
+  - Anti-Tampering & Prompt-Injection Defense: Untrusted JD text cannot elevate requirement importance above what explicit cue phrases support. Unmapped or un-attested skills cannot be injected.
+  - Safe Fallback Protocol: If an optional LLM extractor fails or exhausts retries, it gracefully falls back to `LocalRuleExtractor`.
+  - Deterministic Caching: `sha256(jd_text + extractor_version + config)` caches extractions in-memory and persistently on disk.
+
+
 
 
 
