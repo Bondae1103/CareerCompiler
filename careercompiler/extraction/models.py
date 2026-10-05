@@ -121,3 +121,8 @@ class ExtractedJD(BaseModel):
     extractor_name: str = Field(description="Name of the extractor that produced this chunk.")
     extractor_version: str = Field(default="1.0.0", description="Version of the extractor.")
     cache_key: str = Field(description="Deterministic SHA-256 hash identifying input and configuration.")
+
+    @property
+    def all_requirements(self) -> list[ExtractedRequirement]:
+        """Convenience property returning combined list of hard and preferred requirements."""
+        return self.hard_requirements + self.preferred_qualifications

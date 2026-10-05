@@ -131,3 +131,15 @@ This document records all architectural decisions, audit resolutions, and techni
   - Negative Exclusions: Software versions (e.g. `Python 3.11`, `v1.0`), calendar years/dates (e.g. `2026`, `Sep 2023`), availability metrics (`24/7`), and contact/phone numbers are strictly excluded from empirical impact metrics.
   - Metric Quality Classification: Bullets are classified into 4 quality tiers (`NONE`, `VAGUE`, `QUANTIFIED`, `QUANTIFIED_WITH_BASELINE`) codified in `docs/SCORING.md` for deterministic optimization utility scoring.
   - Truth Invariant: Bullet text is immutable; decomposition only segments and annotates spans. `reconstruct_bullet_text` returns the exact authored text byte-for-byte.
+
+### D-017: Multi-Component Scoring Architecture, BM25 Corpus Indexing & Explainability Invariant (P7)
+- **Date**: 2026-10-05
+- **Status**: DECIDED
+- **Rationale**:
+  - Submodular Lexical Coverage: Requirements are weighted by category (`must_have: 1.0`, `nice_to_have: 0.5`). Submodular set coverage ensures each requirement is counted at most once; duplicates yield zero marginal gain; monotonicity holds strictly.
+  - BM25 Background Corpus Choice: Empirically evaluated `jd_only` ($N \approx 30$, unstable IDF), `bank_only` ($N \approx 12$, overweights rare skills), and `bank_plus_jd` ($N \approx 45-90$). Selected `bank_plus_jd` because indexing profile variants alongside JD requirements provides stable, well-calibrated IDFs that penalize generic terms and reward specific domain matches.
+  - Deterministic Offline Semantic Embedder: Primary semantic embedder `DeterministicHashingEmbedder` operates with zero external network or PyTorch dependency, projecting character and subword n-grams into a 128-dimensional unit hypersphere.
+  - Metric Quality Utility: Bullets are evaluated for quantification quality, boosting both selection score and bullet slot utility.
+  - Explainability Invariant: The overall selection score is a linear combination of normalized components ($S_{\text{total}} = \sum_c w_c \cdot S_c$), and the engine outputs an explicit `ScoreBreakdown` where `total_score` strictly equals the sum of individual component contributions.
+  - Versioned TOML Configuration: All weights, hyperparameters ($k_1=1.5, b=0.75, k_{\text{norm}}=5.0$), and thresholds are declared in `careercompiler/scoring/scoring.toml`. Marked `calibration_status = "UNCALIBRATED"` pending human-labeled gold selections.
+

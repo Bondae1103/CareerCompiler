@@ -1,0 +1,55 @@
+# scoring.toml — Default Scoring & Optimization Weights for Career Compiler
+# Calibration status: UNCALIBRATED (awaiting human-labeled gold resume selections)
+
+[meta]
+version = "1.0.0"
+calibration_status = "UNCALIBRATED"
+last_updated = "2026-10-05"
+
+[requirements]
+# Category weights for JD requirements in lexical coverage
+must_have = 1.0
+nice_to_have = 0.5
+
+[combiner]
+# Selection-level score combiner weights (must sum to 1.0)
+weight_lexical = 0.40
+weight_bm25 = 0.25
+weight_semantic = 0.20
+weight_quality = 0.15
+
+[metric_quality]
+# Score ratios mapped to MetricQuality enum tiers
+none = 0.00
+vague = 0.25
+quantified = 0.75
+quantified_with_baseline = 1.00
+
+# Bullet-level additive bonus for utility calculation
+bonus_none = 0.00
+bonus_vague = 0.05
+bonus_quantified = 0.15
+bonus_quantified_with_baseline = 0.25
+
+[bm25]
+k1 = 1.5
+b = 0.75
+k_norm = 5.0
+corpus_mode = "bank_plus_jd"
+
+[semantic]
+# Default offline provider: deterministic character n-gram hashing
+default_provider = "hashing_ngram"
+embedding_dim = 128
+ngram_min = 2
+ngram_max = 4
+# Optional HuggingFace sentence-transformers model if installed
+hf_model_name = "sentence-transformers/all-MiniLM-L6-v2"
+hf_model_revision = "e4ce9877abf3ed59ced85d39f62ed50bfd257372"
+
+[utility]
+# Parameters for BulletSlot utility U(b)
+alpha_relevance = 0.60
+beta_quality = 0.30
+gamma_line_cost = 0.10
+overflow_line_cost = 0.05
