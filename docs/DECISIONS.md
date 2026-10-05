@@ -121,8 +121,13 @@ This document records all architectural decisions, audit resolutions, and techni
   - Safe Fallback Protocol: If an optional LLM extractor fails or exhausts retries, it gracefully falls back to `LocalRuleExtractor`.
   - Deterministic Caching: `sha256(jd_text + extractor_version + config)` caches extractions in-memory and persistently on disk.
 
-
-
-
-
-
+### D-016: Resume Bullet Decomposition (ACTR) & Metric Quality Architecture (P6)
+- **Date**: 2026-10-05
+- **Status**: DECIDED
+- **Rationale**:
+  - Action Verb Parsing: Extracted from bullet opening with lemmatized root, tense classification (past/present/participle), and exact character offset evidence span.
+  - Technology Entity Grounding: Technologies are matched against the Tier 2 Gazetteer ensuring boundary safety and valid evidence spans where `source[start:end] == surface_form`.
+  - Empirical Impact Metrics: Deterministic parsing of 8 quantified categories (baseline transitions "from X to Y", throughput, latency, percentages, multipliers, currency, scale counts, framerate) with normalized float values.
+  - Negative Exclusions: Software versions (e.g. `Python 3.11`, `v1.0`), calendar years/dates (e.g. `2026`, `Sep 2023`), availability metrics (`24/7`), and contact/phone numbers are strictly excluded from empirical impact metrics.
+  - Metric Quality Classification: Bullets are classified into 4 quality tiers (`NONE`, `VAGUE`, `QUANTIFIED`, `QUANTIFIED_WITH_BASELINE`) codified in `docs/SCORING.md` for deterministic optimization utility scoring.
+  - Truth Invariant: Bullet text is immutable; decomposition only segments and annotates spans. `reconstruct_bullet_text` returns the exact authored text byte-for-byte.
