@@ -141,5 +141,15 @@ This document records all architectural decisions, audit resolutions, and techni
   - Deterministic Offline Semantic Embedder: Primary semantic embedder `DeterministicHashingEmbedder` operates with zero external network or PyTorch dependency, projecting character and subword n-grams into a 128-dimensional unit hypersphere.
   - Metric Quality Utility: Bullets are evaluated for quantification quality, boosting both selection score and bullet slot utility.
   - Explainability Invariant: The overall selection score is a linear combination of normalized components ($S_{\text{total}} = \sum_c w_c \cdot S_c$), and the engine outputs an explicit `ScoreBreakdown` where `total_score` strictly equals the sum of individual component contributions.
-  - Versioned TOML Configuration: All weights, hyperparameters ($k_1=1.5, b=0.75, k_{\text{norm}}=5.0$), and thresholds are declared in `careercompiler/scoring/scoring.toml`. Marked `calibration_status = "UNCALIBRATED"` pending human-labeled gold selections.
-
+### D-018: Layout Template Injection Contract, Safe LaTeX Escaping & PDF Verification (P8)
+- **Date**: 2026-10-06
+- **Status**: DECIDED
+- **Rationale**:
+  - Template Injection Contract: `templates/resume.tex` utilizes explicit LaTeX comment markers (`%%BEGIN:EXPERIENCE:<id>%%`, `%%BEGIN:SLOT:<id>%%` ... `%%END:...%%`). Markers are fully transparent to native TeX compilers while enabling strict stack-based template tree parsing. Unclosed, mismatched, or duplicate markers raise explicit `TemplateSyntaxError` exceptions; guessing is strictly forbidden.
+  - Safe LaTeX Escaping & Control Neutralization: Backslash is escaped first to `\textbackslash{}`, followed by special delimiters (`&`, `%`, `$`, `#`, `_`, `{`, `}`, `~`, `^`, `<`, `>`, `|`, `"`) and unicode mappings. Raw control sequences and ASCII non-printable control characters are strictly sanitized to prevent injection attacks or corrupted TeX execution.
+  - Empirical Page Budget Boundary: Measured via compile experiments that standard header, education, skills, and leadership leave room for exactly 30 bullet lines on 1 page. Selections exceeding capacity cause page overflow.
+  - Multi-Factor Verification Invariants: Compilation uses Tectonic with shell escape disabled, temporary isolated directories per build, and verifies:
+    1. Strict single-page fit (`page_count == 1`).
+    2. Zero missing bullets (Truth Invariant verified via `pdftotext` with ligature and line-wrap normalization).
+    3. Fully embedded fonts (verified via `pdffonts` where all fonts have `emb == yes`).
+    4. Text extractability (ATS compliance check).

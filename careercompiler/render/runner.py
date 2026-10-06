@@ -68,6 +68,8 @@ def get_pdf_page_count(pdf_path: Path, timeout: int = 10) -> int:
             [pdfinfo_exe, str(pdf_path)],
             capture_output=True,
             text=True,
+            encoding="utf-8",
+            errors="replace",
             timeout=timeout,
             check=True,
         )
@@ -90,6 +92,8 @@ def extract_pdf_text(pdf_path: Path, timeout: int = 10) -> str:
             [pdftotext_exe, str(pdf_path), "-"],
             capture_output=True,
             text=True,
+            encoding="utf-8",
+            errors="replace",
             timeout=timeout,
             check=True,
         )
@@ -143,6 +147,8 @@ def compile_tex(
             cmd,
             capture_output=True,
             text=True,
+            encoding="utf-8",
+            errors="replace",
             timeout=timeout,
         )
     except FileNotFoundError as err:
