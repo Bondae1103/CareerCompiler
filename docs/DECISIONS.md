@@ -153,3 +153,19 @@ This document records all architectural decisions, audit resolutions, and techni
     2. Zero missing bullets (Truth Invariant verified via `pdftotext` with ligature and line-wrap normalization).
     3. Fully embedded fonts (verified via `pdffonts` where all fonts have `emb == yes`).
     4. Text extractability (ATS compliance check).
+
+### D-019: ILP Selection Formulation, Closed-Loop Verification & Truth Invariant Enforcement (P9)
+- **Date**: 2026-10-07
+- **Status**: DECIDED
+- **Rationale**:
+  - Deterministic Exact Solver: Modeled bullet selection as an Integer Linear Programming (ILP) problem solved using Google OR-Tools CP-SAT (`ortools.sat.python.cp_model`) with a fixed random seed (`seed=42`) and single-threaded search (`num_search_workers=1`).
+  - Integer Scaling & Objective Parity: Coverage weights and variant utilities are integer-scaled ($1000 \cdot \text{ReqScore} + 10 \cdot \sum \text{utility} - 1 \cdot \text{lines}$) to achieve exact bit-level objective value parity against an exhaustive combinatorial `BruteForceOptimizer` reference solver verified across $\ge 200$ randomized test instances.
+  - Multi-Level Constraint Satisfaction:
+    1. Slot exclusivity: At most 1 variant per slot ($\sum x_{s, v} \le 1$), or exactly 1 if mandatory or pinned ($\sum x_{s, v} = 1$).
+    2. Entity bounds: Entity-level constraints strictly enforce $\text{min\_bullets} \le \sum x \le \text{max\_bullets}$.
+    3. Capacity budget: Total line consumption across selected bullets cannot exceed available line capacity.
+    4. Submodular requirement linking: Requirement coverage variables $cov_r \in \{0, 1\}$ are bounded by $cov_r \le \sum_{v \in \text{matches}} x_{s, v}$ and $cov_r \ge x_{s, v}$ ensuring submodular diminishing returns.
+    5. Lexicographical tie-breaking: Primary coverage, secondary utility, tertiary line tie-breaker preferring fewer lines.
+  - Structured Infeasibility Diagnostics: When an instance cannot be satisfied, a structured diagnosis engine identifies the root conflict type (`LINE_BUDGET`, `MAX_BULLETS_CONFLICT`, `MIN_BULLETS_UNSATISFIABLE`, or `CONSTRAINTS_CONFLICT`) with exact required lines and conflicting slot identifiers.
+  - Closed-Loop Compile Verification & Dynamic Budget Backoff: `ClosedLoopOptimizer` integrates `ILPOptimizer`, `ResumeTemplate`, and `LayoutVerifier`. If layout verification detects page overflow ($> 1$ page), it dynamically decrements the line budget by 1 and re-solves (up to 5 iterations).
+  - Byte-for-Byte Truth Invariant: An emitted bullet must exist in the author's Master Profile Bank and match its source text byte-for-byte. Any deviation or hallucinated text raises a fatal `TruthInvariantViolationError`.
