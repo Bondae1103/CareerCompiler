@@ -169,3 +169,18 @@ This document records all architectural decisions, audit resolutions, and techni
   - Structured Infeasibility Diagnostics: When an instance cannot be satisfied, a structured diagnosis engine identifies the root conflict type (`LINE_BUDGET`, `MAX_BULLETS_CONFLICT`, `MIN_BULLETS_UNSATISFIABLE`, or `CONSTRAINTS_CONFLICT`) with exact required lines and conflicting slot identifiers.
   - Closed-Loop Compile Verification & Dynamic Budget Backoff: `ClosedLoopOptimizer` integrates `ILPOptimizer`, `ResumeTemplate`, and `LayoutVerifier`. If layout verification detects page overflow ($> 1$ page), it dynamically decrements the line budget by 1 and re-solves (up to 5 iterations).
   - Byte-for-Byte Truth Invariant: An emitted bullet must exist in the author's Master Profile Bank and match its source text byte-for-byte. Any deviation or hallucinated text raises a fatal `TruthInvariantViolationError`.
+
+### D-020: Granular Selection Diffing, Score Deltas & 1-Click Truth-Invariant Reversion (P10)
+- **Date**: 2026-10-07
+- **Status**: DECIDED
+- **Rationale**:
+  - Deterministic Baseline Definition: The user's baseline selection is determined deterministically by selecting the author's marked default variant (`is_default=True`, or `sort_order` lowest) for each slot across their Master Profile Bank (`build_baseline_selection`).
+  - Granular Slot Diffing: Every slot is categorized into exact semantic actions:
+    - `UNCHANGED`: baseline bullet retained
+    - `SWAPPED`: different authored variant selected to boost keyword alignment or utility
+    - `ADDED`: slot included from profile to fill capacity budget
+    - `OMITTED`: slot omitted to respect strict 1-page line budget constraints
+    - `LLM_REWRITTEN`: bullet was dynamically reworded under Decision D-004
+  - Explainable Score Deltas: When evaluated against a target JD, the engine calculates exact component score deltas ($\Delta_{\text{total}} = S_{\text{tailored}} - S_{\text{baseline}}$, $\Delta_{\text{lexical}}$, $\Delta_{\text{bm25}}$, $\Delta_{\text{semantic}}$, $\Delta_{\text{quality}}$), pinpointing newly covered requirements and any trade-off losses.
+  - 1-Click Rollback & Truth Invariant: Users can revert individual slots or roll back the entire tailored resume in 1 click (`revert_slot`, `revert_all`). All rollbacks enforce the Truth Invariant (reverting only to verified authored variants in the Master Profile Bank) and audit-log every change with UTC timestamps, previous variant IDs, target variant IDs, and reasons.
+  - Entity Bounds Preservation: Rollbacks validate entity constraints ($\text{min\_bullets} \le \text{count} \le \text{max\_bullets}$), preventing illegal states.
