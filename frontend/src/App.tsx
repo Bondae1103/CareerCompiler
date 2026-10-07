@@ -14,6 +14,7 @@ import { DiffInspector } from './components/DiffInspector'
 import { JDIntake } from './components/JDIntake'
 import { MasterProfileView } from './components/MasterProfileView'
 import { Navbar } from './components/Navbar'
+import { ErrorBoundary } from './components/ErrorBoundary'
 import { TexViewer } from './components/TexViewer'
 import type { ExtractedJD, Profile, SelectionDiff, TailorResponse } from './types'
 
@@ -94,7 +95,13 @@ export function App() {
       setIsExtracting(true)
       const parsed = await parseJD(jdText)
       setExtractedJd(parsed)
-      showToast(`Extracted ${parsed.all_requirements.length} requirements for ${parsed.role_title}`, 'success')
+      const count =
+        (parsed.hard_requirements?.length ?? 0) +
+        (parsed.preferred_qualifications?.length ?? 0)
+      showToast(
+        `Extracted ${count} requirements for ${parsed.role_title}`,
+        'success'
+      )
     } catch (err: unknown) {
       const errorMsg = err instanceof Error ? err.message : String(err)
       showToast(errorMsg, 'error')
@@ -216,59 +223,61 @@ export function App() {
 
       {/* Main Tabs */}
       <main style={{ marginTop: '1rem' }}>
-        {activeTab === 'tailor' && (
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
-            <JDIntake
-              jdText={jdText}
-              setJdText={setJdText}
-              capacityLines={capacityLines}
-              setCapacityLines={setCapacityLines}
-              extractedJd={extractedJd}
-              isExtracting={isExtracting}
-              isTailoring={isTailoring}
-              onDeconstruct={handleDeconstruct}
-              onTailor={handleTailor}
-            />
-
-            {tailorResult && diff && (
-              <ATSScoreboard
-                tailorResult={tailorResult}
-                diff={diff}
+        <ErrorBoundary>
+          {activeTab === 'tailor' && (
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+              <JDIntake
+                jdText={jdText}
+                setJdText={setJdText}
+                capacityLines={capacityLines}
+                setCapacityLines={setCapacityLines}
                 extractedJd={extractedJd}
+                isExtracting={isExtracting}
+                isTailoring={isTailoring}
+                onDeconstruct={handleDeconstruct}
+                onTailor={handleTailor}
               />
-            )}
 
-            {diff && (
-              <DiffInspector
-                diff={diff}
-                onRevertSlot={handleRevertSlot}
-                onRevertAll={handleRevertAll}
-                isReverting={isReverting}
-              />
-            )}
-          </div>
-        )}
+              {tailorResult && diff && (
+                <ATSScoreboard
+                  tailorResult={tailorResult}
+                  diff={diff}
+                  extractedJd={extractedJd}
+                />
+              )}
 
-        {activeTab === 'profile' && (
-          <MasterProfileView profile={profile} loading={loadingProfile} />
-        )}
+              {diff && (
+                <DiffInspector
+                  diff={diff}
+                  onRevertSlot={handleRevertSlot}
+                  onRevertAll={handleRevertAll}
+                  isReverting={isReverting}
+                />
+              )}
+            </div>
+          )}
 
-        {activeTab === 'diff' && (
-          <DiffInspector
-            diff={diff}
-            onRevertSlot={handleRevertSlot}
-            onRevertAll={handleRevertAll}
-            isReverting={isReverting}
-          />
-        )}
+          {activeTab === 'profile' && (
+            <MasterProfileView profile={profile} loading={loadingProfile} />
+          )}
 
-        {activeTab === 'tex' && (
-          <TexViewer
-            texSource={texSource}
-            pdfUrl={getPdfDownloadUrl()}
-            hasCompiledPdf={tailorResult?.compile_verified ?? false}
-          />
-        )}
+          {activeTab === 'diff' && (
+            <DiffInspector
+              diff={diff}
+              onRevertSlot={handleRevertSlot}
+              onRevertAll={handleRevertAll}
+              isReverting={isReverting}
+            />
+          )}
+
+          {activeTab === 'tex' && (
+            <TexViewer
+              texSource={texSource}
+              pdfUrl={getPdfDownloadUrl()}
+              hasCompiledPdf={tailorResult?.compile_verified ?? false}
+            />
+          )}
+        </ErrorBoundary>
       </main>
     </div>
   )

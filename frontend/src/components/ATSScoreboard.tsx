@@ -12,13 +12,28 @@ export const ATSScoreboard: React.FC<ATSScoreboardProps> = ({
   diff,
   extractedJd,
 }) => {
-  if (!tailorResult || !diff) {
+  if (!tailorResult || !diff || !diff.score_delta) {
     return null
   }
 
   const scoreDelta = diff.score_delta
-  const percentage = scoreDelta.percentage_change
-  const isPositive = percentage >= 0
+  const tailoredScore = scoreDelta.tailored_score?.total_score ?? 0
+  const baselineScore = scoreDelta.baseline_score?.total_score ?? 0
+  const deltaTotal = scoreDelta.delta_total ?? 0
+  const percentage =
+    baselineScore > 0 ? (deltaTotal / baselineScore) * 100 : 0
+  const isPositive = deltaTotal >= 0
+
+  const allReqs = [
+    ...(extractedJd?.hard_requirements ?? []),
+    ...(extractedJd?.preferred_qualifications ?? []),
+  ]
+
+  const coveredReqIds = new Set(
+    tailorResult.selection?.covered_requirements ??
+      scoreDelta.tailored_score?.covered_requirements ??
+      []
+  )
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
@@ -38,7 +53,7 @@ export const ATSScoreboard: React.FC<ATSScoreboardProps> = ({
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
             <h3 style={{ fontSize: '1.15rem', fontWeight: 700 }}>ATS Match Scoreboard</h3>
             <span className="badge badge-success">✓ 1-Page Fit Verified</span>
-            <span className="badge badge-info">{tailorResult.iterations} Solve Iteration(s)</span>
+            <span className="badge badge-info">{tailorResult.iterations ?? 1} Solve Iteration(s)</span>
           </div>
           <p style={{ fontSize: '0.82rem', color: 'var(--text-secondary)', marginTop: '0.2rem' }}>
             Optimized via Google OR-Tools CP-SAT and verified against strict XeTeX box geometry.
@@ -49,17 +64,17 @@ export const ATSScoreboard: React.FC<ATSScoreboardProps> = ({
           <div>
             <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>Tailored Score</div>
             <div style={{ fontSize: '1.5rem', fontWeight: 800, color: '#34d399' }}>
-              {scoreDelta.tailored_total_score.toFixed(1)}
+              {tailoredScore.toFixed(1)}
             </div>
           </div>
           <div>
             <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>Baseline Score</div>
             <div style={{ fontSize: '1.5rem', fontWeight: 800, color: '#94a3b8' }}>
-              {scoreDelta.baseline_total_score.toFixed(1)}
+              {baselineScore.toFixed(1)}
             </div>
           </div>
           <div>
-            <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>Optimization Lift</div>
+            <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>Optimization Delta</div>
             <div
               style={{
                 fontSize: '1.5rem',
@@ -67,7 +82,10 @@ export const ATSScoreboard: React.FC<ATSScoreboardProps> = ({
                 color: isPositive ? '#34d399' : '#f87171',
               }}
             >
-              {isPositive ? `+${percentage.toFixed(1)}%` : `${percentage.toFixed(1)}%`}
+              {isPositive ? `+${deltaTotal.toFixed(1)}` : deltaTotal.toFixed(1)}{' '}
+              <span style={{ fontSize: '0.85rem' }}>
+                ({percentage >= 0 ? `+${percentage.toFixed(1)}%` : `${percentage.toFixed(1)}%`})
+              </span>
             </div>
           </div>
         </div>
@@ -76,63 +94,63 @@ export const ATSScoreboard: React.FC<ATSScoreboardProps> = ({
       {/* Metric Breakdown Cards */}
       <div className="grid-4">
         <div className="card">
-          <div style={{ fontSize: '0.78rem', color: 'var(--text-muted)' }}>Exact Lexical Match</div>
-          <div style={{ fontSize: '1.25rem', fontWeight: 700, margin: '0.3rem 0' }}>
-            {scoreDelta.lexical_match_delta >= 0 ? '+' : ''}
-            {(scoreDelta.lexical_match_delta * 100).toFixed(1)}%
+          <div style={{ fontSize: '0.78rem', color: 'var(--text-muted)' }}>Lexical Keyword Score</div>
+          <div style={{ fontSize: '1.25rem', fontWeight: 700, margin: '0.3rem 0', color: '#34d399' }}>
+            {scoreDelta.tailored_score?.lexical_score?.toFixed(1) ?? '0.0'}%
           </div>
           <div style={{ fontSize: '0.72rem', color: 'var(--text-secondary)' }}>
-            Keyword token matches
+            Delta: {scoreDelta.delta_lexical >= 0 ? '+' : ''}
+            {(scoreDelta.delta_lexical ?? 0).toFixed(1)}
           </div>
         </div>
 
         <div className="card">
-          <div style={{ fontSize: '0.78rem', color: 'var(--text-muted)' }}>BM25 Ranking Delta</div>
+          <div style={{ fontSize: '0.78rem', color: 'var(--text-muted)' }}>BM25 Ranking Score</div>
           <div style={{ fontSize: '1.25rem', fontWeight: 700, margin: '0.3rem 0', color: '#60a5fa' }}>
-            {scoreDelta.bm25_delta >= 0 ? '+' : ''}
-            {scoreDelta.bm25_delta.toFixed(2)}
+            {scoreDelta.tailored_score?.bm25_score?.toFixed(1) ?? '0.0'}
           </div>
           <div style={{ fontSize: '0.72rem', color: 'var(--text-secondary)' }}>
-            Information retrieval weight
+            Delta: {scoreDelta.delta_bm25 >= 0 ? '+' : ''}
+            {(scoreDelta.delta_bm25 ?? 0).toFixed(2)}
           </div>
         </div>
 
         <div className="card">
-          <div style={{ fontSize: '0.78rem', color: 'var(--text-muted)' }}>Semantic Cosine Delta</div>
+          <div style={{ fontSize: '0.78rem', color: 'var(--text-muted)' }}>Semantic Cosine Score</div>
           <div style={{ fontSize: '1.25rem', fontWeight: 700, margin: '0.3rem 0', color: '#c084fc' }}>
-            {scoreDelta.semantic_similarity_delta >= 0 ? '+' : ''}
-            {(scoreDelta.semantic_similarity_delta * 100).toFixed(1)}%
+            {scoreDelta.tailored_score?.semantic_score?.toFixed(1) ?? '0.0'}%
           </div>
           <div style={{ fontSize: '0.72rem', color: 'var(--text-secondary)' }}>
-            Contextual embedding match
+            Delta: {scoreDelta.delta_semantic >= 0 ? '+' : ''}
+            {(scoreDelta.delta_semantic ?? 0).toFixed(1)}
           </div>
         </div>
 
         <div className="card">
           <div style={{ fontSize: '0.78rem', color: 'var(--text-muted)' }}>Bullet Line Budget</div>
           <div style={{ fontSize: '1.25rem', fontWeight: 700, margin: '0.3rem 0', color: '#fbbf24' }}>
-            {tailorResult.total_lines} lines
+            {tailorResult.total_lines ?? diff.tailored_total_lines ?? 0} lines
           </div>
           <div style={{ fontSize: '0.72rem', color: 'var(--text-secondary)' }}>
-            Strict 1-page budget satisfied
+            Baseline: {diff.baseline_total_lines ?? 0} lines (Δ {diff.line_budget_delta ?? 0})
           </div>
         </div>
       </div>
 
       {/* Requirements Coverage Analysis */}
-      {extractedJd && (
+      {allReqs.length > 0 && (
         <div className="card">
           <h4 className="card-title">
             <span>Requirements Coverage Matrix</span>
             <span style={{ fontSize: '0.8rem', fontWeight: 500, color: 'var(--text-secondary)' }}>
-              {tailorResult.selection.covered_requirements.length} /{' '}
-              {extractedJd.all_requirements.length} Satisfied
+              {coveredReqIds.size} / {allReqs.length} Satisfied
             </span>
           </h4>
 
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.4rem', marginTop: '0.5rem' }}>
-            {extractedJd.all_requirements.map((req) => {
-              const isCovered = tailorResult.selection.covered_requirements.includes(req.id)
+            {allReqs.map((req) => {
+              const isCovered =
+                coveredReqIds.has(req.id) || coveredReqIds.has(req.canonical_id)
               return (
                 <div
                   key={req.id}
@@ -154,7 +172,7 @@ export const ATSScoreboard: React.FC<ATSScoreboardProps> = ({
                   }}
                 >
                   <span>{isCovered ? '✓' : '✗'}</span>
-                  <span>{req.display_name}</span>
+                  <span>{req.surface_form || req.canonical_id}</span>
                   <span style={{ fontSize: '0.7rem', opacity: 0.75 }}>
                     ({req.canonical_id})
                   </span>

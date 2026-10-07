@@ -2,6 +2,7 @@ export interface ContactInfo {
   name: string
   phone: string
   email: string
+  location?: string
   linkedin_url?: string
   github_url?: string
   portfolio_url?: string
@@ -13,39 +14,51 @@ export interface Education {
   location: string
   degree: string
   dates: string
+  gpa?: string
   details?: string
 }
 
 export interface BulletVariant {
   id: string
   text: string
-  lines: number
-  canonical_tags: string[]
+  angle?: string
+  sort_order?: number
   is_default: boolean
+  canonical_tags: string[]
+  lines?: number
   metric_claim?: string
 }
 
 export interface BulletSlot {
   id: string
   name: string
-  max_lines: number
+  pinned?: boolean
+  mandatory?: boolean
   variants: BulletVariant[]
 }
 
 export interface Experience {
   id: string
   company: string
-  role: string
-  location: string
-  dates: string
+  location?: string
+  title: string
+  start_date?: string
+  end_date?: string
+  min_bullets?: number
+  max_bullets?: number
   slots: BulletSlot[]
 }
 
 export interface Project {
   id: string
-  name: string
-  technologies: string[]
-  dates?: string
+  title: string
+  tools?: string[]
+  url?: string
+  github_url?: string
+  start_date?: string
+  end_date?: string
+  min_bullets?: number
+  max_bullets?: number
   slots: BulletSlot[]
 }
 
@@ -66,21 +79,24 @@ export interface Profile {
   metadata?: Record<string, string>
 }
 
-export interface HardRequirement {
+export interface ExtractedRequirement {
   id: string
   canonical_id: string
-  display_name: string
-  min_experience_years?: number
-  is_must_have: boolean
-  weight: number
+  surface_form: string
+  category?: string
+  required_years?: number | null
+  importance: number
+  cue_phrase?: string | null
+  unmapped?: boolean
 }
 
 export interface ExtractedJD {
   role_title: string
   company_name?: string
-  hard_requirements: HardRequirement[]
-  nice_to_have_requirements: HardRequirement[]
-  all_requirements: HardRequirement[]
+  hard_requirements: ExtractedRequirement[]
+  preferred_qualifications: ExtractedRequirement[]
+  scale_indicators?: unknown[]
+  validation_warnings?: string[]
 }
 
 export interface SelectedBullet {
@@ -103,34 +119,46 @@ export interface Selection {
   solver_status: string
 }
 
-export interface TagDelta {
-  gained_tags: string[]
-  lost_tags: string[]
-}
-
 export interface BulletDiff {
   slot_id: string
   entity_id: string
   action: 'UNCHANGED' | 'SWAPPED' | 'ADDED' | 'OMITTED' | 'LLM_REWRITTEN'
   baseline_variant_id: string | null
-  tailored_variant_id: string | null
   baseline_text: string | null
+  tailored_variant_id: string | null
   tailored_text: string | null
-  baseline_lines: number
-  tailored_lines: number
+  added_tags: string[]
+  removed_tags: string[]
   line_delta: number
-  tag_delta: TagDelta
-  is_reverted: boolean
+  utility_delta: number
+  can_revert: boolean
+  revert_to_variant_id: string | null
+  explanation?: string
+  is_reverted?: boolean
 }
 
-export interface ATSScoreDelta {
-  total_score_delta: number
-  lexical_match_delta: number
-  bm25_delta: number
-  semantic_similarity_delta: number
-  baseline_total_score: number
-  tailored_total_score: number
-  percentage_change: number
+export interface ATSScoreBreakdown {
+  total_score: number
+  lexical_score: number
+  bm25_score: number
+  semantic_score: number
+  quality_score: number
+  coverage_count: number
+  total_requirements: number
+  covered_requirements: string[]
+  missing_requirements: string[]
+}
+
+export interface ScoreDelta {
+  baseline_score: ATSScoreBreakdown
+  tailored_score: ATSScoreBreakdown
+  delta_total: number
+  delta_lexical: number
+  delta_bm25: number
+  delta_semantic: number
+  delta_quality: number
+  newly_covered_requirements: string[]
+  lost_requirements: string[]
 }
 
 export interface RevertRecord {
@@ -143,17 +171,21 @@ export interface RevertRecord {
 
 export interface SelectionDiff {
   job_id: string
+  profile_id?: string
   bullet_diffs: BulletDiff[]
-  net_line_delta: number
-  net_tags_gained: string[]
-  net_tags_lost: string[]
-  score_delta: ATSScoreDelta
+  score_delta: ScoreDelta
+  baseline_total_lines: number
+  tailored_total_lines: number
+  line_budget_delta: number
+  total_swapped: number
+  total_added: number
+  total_omitted: number
+  total_unchanged: number
   revert_history: RevertRecord[]
-  timestamp: string
 }
 
 export interface TailorResponse {
-  success: bool_or_boolean
+  success: boolean
   role_title: string
   iterations: number
   compile_verified: boolean
@@ -163,8 +195,6 @@ export interface TailorResponse {
   markdown_report: string
   error?: string | null
 }
-
-type bool_or_boolean = boolean
 
 export interface RevertResponse {
   status: string

@@ -6,6 +6,9 @@ import type {
 } from './types'
 
 const getBaseUrl = (): string => {
+  if (import.meta.env.VITE_API_BASE_URL) {
+    return import.meta.env.VITE_API_BASE_URL
+  }
   if (typeof window === 'undefined') return ''
   if (window.location.port === '8000') return ''
   if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {

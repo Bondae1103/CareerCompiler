@@ -16,7 +16,7 @@ export const DiffInspector: React.FC<DiffInspectorProps> = ({
 }) => {
   const [filterAction, setFilterAction] = useState<string>('ALL')
 
-  if (!diff) {
+  if (!diff || !diff.bullet_diffs) {
     return (
       <div className="card" style={{ textAlign: 'center', padding: '3rem' }}>
         <p style={{ color: 'var(--text-secondary)' }}>
@@ -42,15 +42,19 @@ export const DiffInspector: React.FC<DiffInspectorProps> = ({
     }
   }
 
-  const filteredBullets = diff.bullet_diffs.filter((b) => {
+  const bulletDiffs = diff.bullet_diffs ?? []
+  const filteredBullets = bulletDiffs.filter((b) => {
     if (filterAction === 'ALL') return true
     return b.action === filterAction
   })
 
-  const swappedCount = diff.bullet_diffs.filter((b) => b.action === 'SWAPPED').length
-  const addedCount = diff.bullet_diffs.filter((b) => b.action === 'ADDED').length
-  const omittedCount = diff.bullet_diffs.filter((b) => b.action === 'OMITTED').length
-  const unchangedCount = diff.bullet_diffs.filter((b) => b.action === 'UNCHANGED').length
+  const swappedCount = diff.total_swapped ?? bulletDiffs.filter((b) => b.action === 'SWAPPED').length
+  const addedCount = diff.total_added ?? bulletDiffs.filter((b) => b.action === 'ADDED').length
+  const omittedCount = diff.total_omitted ?? bulletDiffs.filter((b) => b.action === 'OMITTED').length
+  const unchangedCount = diff.total_unchanged ?? bulletDiffs.filter((b) => b.action === 'UNCHANGED').length
+
+  const allAddedTags = Array.from(new Set(bulletDiffs.flatMap((b) => b.added_tags ?? [])))
+  const allRemovedTags = Array.from(new Set(bulletDiffs.flatMap((b) => b.removed_tags ?? [])))
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
@@ -68,7 +72,7 @@ export const DiffInspector: React.FC<DiffInspectorProps> = ({
         <div>
           <h3 className="card-title">
             <span>Bullet-Level Selection Diff & Review</span>
-            <span className="badge badge-info">{diff.job_id}</span>
+            <span className="badge badge-info">{diff.job_id || 'Tailored Job'}</span>
           </h3>
           <p className="card-subtitle" style={{ marginBottom: 0 }}>
             Compare tailored variant selections against baseline defaults. 1-click revert preserves Truth Invariant with full audit logging.
@@ -94,7 +98,7 @@ export const DiffInspector: React.FC<DiffInspectorProps> = ({
             className={`btn btn-sm ${filterAction === 'ALL' ? 'btn-primary' : 'btn-secondary'}`}
             onClick={() => setFilterAction('ALL')}
           >
-            All ({diff.bullet_diffs.length})
+            All ({bulletDiffs.length})
           </button>
           <button
             className={`btn btn-sm ${filterAction === 'SWAPPED' ? 'btn-primary' : 'btn-secondary'}`}
@@ -123,8 +127,8 @@ export const DiffInspector: React.FC<DiffInspectorProps> = ({
         </div>
 
         <div style={{ fontSize: '0.8rem', color: 'var(--text-secondary)' }}>
-          Net Tag Gained: <strong style={{ color: '#34d399' }}>+{diff.net_tags_gained.length}</strong> |
-          Lost: <strong style={{ color: '#f87171' }}>-{diff.net_tags_lost.length}</strong>
+          Net Tags Gained: <strong style={{ color: '#34d399' }}>+{allAddedTags.length}</strong> |
+          Lost: <strong style={{ color: '#f87171' }}>-{allRemovedTags.length}</strong>
         </div>
       </div>
 
@@ -172,7 +176,7 @@ export const DiffInspector: React.FC<DiffInspectorProps> = ({
               </div>
 
               {/* 1-Click Revert Button */}
-              {bullet.action === 'SWAPPED' && !bullet.is_reverted && (
+              {(bullet.can_revert || bullet.action === 'SWAPPED') && !bullet.is_reverted && (
                 <button
                   type="button"
                   className="btn btn-secondary btn-sm"
@@ -245,15 +249,15 @@ export const DiffInspector: React.FC<DiffInspectorProps> = ({
             </div>
 
             {/* Tag Deltas */}
-            {(bullet.tag_delta.gained_tags.length > 0 || bullet.tag_delta.lost_tags.length > 0) && (
+            {((bullet.added_tags?.length ?? 0) > 0 || (bullet.removed_tags?.length ?? 0) > 0) && (
               <div style={{ marginTop: '0.6rem', display: 'flex', gap: '0.4rem', alignItems: 'center' }}>
                 <span style={{ fontSize: '0.72rem', color: 'var(--text-muted)' }}>Tag Deltas:</span>
-                {bullet.tag_delta.gained_tags.map((tag) => (
+                {(bullet.added_tags ?? []).map((tag) => (
                   <span key={tag} className="tag-chip tag-gain">
                     +{tag}
                   </span>
                 ))}
-                {bullet.tag_delta.lost_tags.map((tag) => (
+                {(bullet.removed_tags ?? []).map((tag) => (
                   <span key={tag} className="tag-chip tag-loss">
                     -{tag}
                   </span>
@@ -265,7 +269,7 @@ export const DiffInspector: React.FC<DiffInspectorProps> = ({
       </div>
 
       {/* Immutable Revert Audit History */}
-      {diff.revert_history.length > 0 && (
+      {(diff.revert_history?.length ?? 0) > 0 && (
         <div className="card" style={{ borderLeft: '4px solid #f59e0b' }}>
           <h4 className="card-title">
             <span>Rollback Audit Log</span>

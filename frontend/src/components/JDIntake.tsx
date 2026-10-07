@@ -59,6 +59,10 @@ export const JDIntake: React.FC<JDIntakeProps> = ({
   onDeconstruct,
   onTailor,
 }) => {
+  const hardReqs = extractedJd?.hard_requirements ?? []
+  const preferredReqs = extractedJd?.preferred_qualifications ?? []
+  const totalReqCount = hardReqs.length + preferredReqs.length
+
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
       <div className="card">
@@ -147,7 +151,7 @@ export const JDIntake: React.FC<JDIntakeProps> = ({
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.75rem' }}>
             <div>
               <h4 style={{ fontSize: '1rem', fontWeight: 600 }}>
-                Parsed Role: {extractedJd.role_title}
+                Parsed Role: {extractedJd.role_title || 'Untitled Role'}
               </h4>
               {extractedJd.company_name && (
                 <span style={{ fontSize: '0.8rem', color: 'var(--text-secondary)' }}>
@@ -156,7 +160,7 @@ export const JDIntake: React.FC<JDIntakeProps> = ({
               )}
             </div>
             <span className="badge badge-purple">
-              {extractedJd.all_requirements.length} Requirements Found
+              {totalReqCount} Requirements Found
             </span>
           </div>
 
@@ -164,36 +168,44 @@ export const JDIntake: React.FC<JDIntakeProps> = ({
             {/* Must-Have */}
             <div>
               <div style={{ fontSize: '0.8rem', fontWeight: 600, color: '#f87171', marginBottom: '0.4rem' }}>
-                Must-Have Requirements ({extractedJd.hard_requirements.length})
+                Must-Have Requirements ({hardReqs.length})
               </div>
               <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.3rem' }}>
-                {extractedJd.hard_requirements.map((req) => (
-                  <span
-                    key={req.id}
-                    className="tag-chip"
-                    style={{ borderColor: 'rgba(239, 68, 68, 0.4)', color: '#fca5a5' }}
-                  >
-                    ★ {req.display_name} ({req.canonical_id})
-                  </span>
-                ))}
+                {hardReqs.length === 0 ? (
+                  <span style={{ fontSize: '0.78rem', color: 'var(--text-muted)' }}>None detected</span>
+                ) : (
+                  hardReqs.map((req) => (
+                    <span
+                      key={req.id}
+                      className="tag-chip"
+                      style={{ borderColor: 'rgba(239, 68, 68, 0.4)', color: '#fca5a5' }}
+                    >
+                      ★ {req.surface_form || req.canonical_id} ({req.canonical_id})
+                    </span>
+                  ))
+                )}
               </div>
             </div>
 
             {/* Nice-To-Have */}
             <div>
               <div style={{ fontSize: '0.8rem', fontWeight: 600, color: '#fbbf24', marginBottom: '0.4rem' }}>
-                Nice-To-Have Requirements ({extractedJd.nice_to_have_requirements.length})
+                Preferred Qualifications ({preferredReqs.length})
               </div>
               <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.3rem' }}>
-                {extractedJd.nice_to_have_requirements.map((req) => (
-                  <span
-                    key={req.id}
-                    className="tag-chip"
-                    style={{ borderColor: 'rgba(245, 158, 11, 0.4)', color: '#fde68a' }}
-                  >
-                    {req.display_name} ({req.canonical_id})
-                  </span>
-                ))}
+                {preferredReqs.length === 0 ? (
+                  <span style={{ fontSize: '0.78rem', color: 'var(--text-muted)' }}>None detected</span>
+                ) : (
+                  preferredReqs.map((req) => (
+                    <span
+                      key={req.id}
+                      className="tag-chip"
+                      style={{ borderColor: 'rgba(245, 158, 11, 0.4)', color: '#fde68a' }}
+                    >
+                      {req.surface_form || req.canonical_id} ({req.canonical_id})
+                    </span>
+                  ))
+                )}
               </div>
             </div>
           </div>
