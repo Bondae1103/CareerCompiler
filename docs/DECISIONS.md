@@ -184,3 +184,31 @@ This document records all architectural decisions, audit resolutions, and techni
   - Explainable Score Deltas: When evaluated against a target JD, the engine calculates exact component score deltas ($\Delta_{\text{total}} = S_{\text{tailored}} - S_{\text{baseline}}$, $\Delta_{\text{lexical}}$, $\Delta_{\text{bm25}}$, $\Delta_{\text{semantic}}$, $\Delta_{\text{quality}}$), pinpointing newly covered requirements and any trade-off losses.
   - 1-Click Rollback & Truth Invariant: Users can revert individual slots or roll back the entire tailored resume in 1 click (`revert_slot`, `revert_all`). All rollbacks enforce the Truth Invariant (reverting only to verified authored variants in the Master Profile Bank) and audit-log every change with UTC timestamps, previous variant IDs, target variant IDs, and reasons.
   - Entity Bounds Preservation: Rollbacks validate entity constraints ($\text{min\_bullets} \le \text{count} \le \text{max\_bullets}$), preventing illegal states.
+### D-021: Delivery Layer Architecture, CLI Design, and React Web Dashboard (P11)
+- **Date**: 2026-10-07
+- **Status**: DECIDED
+- **Rationale**:
+  - Decoupled Delivery Architecture: The delivery layer exposes the pure deterministic compiler engine via two decoupled interfaces: an extensible Command-Line Interface (`careercompiler.cli.main`) and a high-performance REST API (`careercompiler.api.app`) built with FastAPI, Uvicorn, and Starlette. The pure library core (`careercompiler/`) remains completely independent of web frameworks.
+  - Comprehensive CLI Subcommands:
+    - `careercompiler profile show|export|import`: Inspects candidate contact info, experiences, projects, and variants, with JSON export and import capabilities.
+    - `careercompiler parse-jd <jd>`: Decomposes arbitrary JD text or file paths into hard requirements and nice-to-have qualifications.
+    - `careercompiler compile --jd <jd>`: Executes end-to-end closed-loop optimization, Tectonic PDF compilation, and formats a markdown review diff report with bullet actions and ATS score deltas.
+    - `careercompiler diff --jd <jd>`: Computes selection diffs, tag deltas, and ATS score deltas directly without recompiling the PDF.
+    - `careercompiler serve`: Launches the Uvicorn web server hosting both the REST API and the React SPA dashboard.
+  - Production REST API Specification:
+    - `GET /api/health`: Health check and version verification.
+    - `GET /api/profile` & `PUT /api/profile`: Master Profile Bank retrieval and persistence with Pydantic validation.
+    - `POST /api/jds/parse`: Deconstructs raw job descriptions into structured requirements and canonical IDs.
+    - `POST /api/tailor`: Executes closed-loop ILP optimization, verifies 1-page fit with Tectonic, caches rendered TeX, and generates the complete SelectionDiff with ATS score deltas.
+    - `POST /api/revert`: Executes 1-click slot-level rollback or global resume rollback, returning updated diffs and appending immutable audit records.
+    - `GET /api/pdf` & `GET /api/tex`: Direct artifact download endpoints for the verified compiled PDF and raw LaTeX source.
+  - React + Vite Web Dashboard (`frontend/`):
+    - Fast, modern TypeScript SPA with zero external runtime UI dependencies (native SVGs and responsive modern CSS).
+    - Features:
+      1. Master Profile Explorer: Displays verified candidate credentials, accomplishment slots, and authored variants with tag chips and metric claims.
+      2. Job Description Intake & Deconstructor: Preset selector for rapid testing, custom text area, target line budget slider (15-40 lines), and must-have requirement chips.
+      3. ATS Match Scoreboard: Highlights total ATS score lift ($\Delta_{\text{total}}$), lexical match, BM25, and semantic cosine deltas, with requirements coverage chips.
+      4. Interactive Side-by-Side Diff Inspector: Slot cards with semantic badges (`[SWAPPED]`, `[ADDED]`, `[OMITTED]`, `[UNCHANGED]`), baseline vs tailored bullet text, gained/lost tags, and interactive "1-Click Revert" buttons.
+      5. Revert Audit Trail: Immutable table recording all rollback events.
+      6. LaTeX Source & PDF Download Viewer: In-browser syntax viewer with clipboard copy and direct PDF download.
+    - Out-of-the-Box Static Serving: Built production assets (`frontend/dist`) are mounted directly at `/` by FastAPI, allowing single-command local deployment via `careercompiler serve`.

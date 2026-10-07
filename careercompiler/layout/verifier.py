@@ -95,9 +95,9 @@ class LayoutVerifier:
         temp_dir_ctx = None
         if work_dir is None:
             temp_dir_ctx = tempfile.TemporaryDirectory()
-            target_dir = Path(temp_dir_ctx.name)
+            target_dir = Path(temp_dir_ctx.name).resolve()
         else:
-            target_dir = work_dir
+            target_dir = work_dir.resolve()
             target_dir.mkdir(parents=True, exist_ok=True)
 
         try:

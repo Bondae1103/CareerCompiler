@@ -11,7 +11,10 @@ __pycache__/
 *.out
 *.xdv
 *.zip
+output/
+data/*.db
 eval_spike_s2_sandbox/
 test_tectonic_sandbox/
 test_resume_sandbox/
 test_resume_sandbox2/
+frontend/node_modules/
