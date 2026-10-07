@@ -53,29 +53,40 @@ export function App() {
     setTimeout(() => setToast(null), 4000)
   }
 
-  // Load backend status and master profile on mount
+  // Periodically check backend health and auto-connect
   useEffect(() => {
-    const init = async () => {
+    let isMounted = true
+
+    const checkHealth = async () => {
       try {
         await fetchHealth()
-        setBackendOnline(true)
+        if (isMounted) setBackendOnline(true)
       } catch {
-        setBackendOnline(false)
-      }
-
-      try {
-        setLoadingProfile(true)
-        const prof = await fetchProfile()
-        setProfile(prof)
-      } catch (err: unknown) {
-        const errorMsg = err instanceof Error ? err.message : String(err)
-        showToast(`Failed to load profile: ${errorMsg}`, 'error')
-      } finally {
-        setLoadingProfile(false)
+        if (isMounted) setBackendOnline(false)
       }
     }
-    init()
+
+    checkHealth()
+    const timer = setInterval(checkHealth, 2500)
+    return () => {
+      isMounted = false
+      clearInterval(timer)
+    }
   }, [])
+
+  // Auto-fetch profile whenever backend becomes online and profile is not loaded
+  useEffect(() => {
+    if (backendOnline && !profile) {
+      setLoadingProfile(true)
+      fetchProfile()
+        .then((prof) => setProfile(prof))
+        .catch((err: unknown) => {
+          const errorMsg = err instanceof Error ? err.message : String(err)
+          showToast(`Failed to load profile: ${errorMsg}`, 'error')
+        })
+        .finally(() => setLoadingProfile(false))
+    }
+  }, [backendOnline, profile])
 
   // Deconstruct JD
   const handleDeconstruct = async () => {
